@@ -14,19 +14,19 @@ namespace BlackJackGame
     {
         // ======== VARIÁVEIS DO JOGO ========
         // Manter nomes próximos aos seus originais
-        int numerosorteio1 = 0; // valor sorteado mais recente (Zucolin)
-        int numerosorteio2 = 0; // acumulador parcial (Zucolin) - usado para somar
-        int numerosorteio3 = 0; // valor sorteado mais recente (Nathália)
-        int numerosorteio4 = 0; // acumulador parcial (Nathália) - usado para somar
+        int numerosorteio1 = 0; // valor sorteado mais recente (Player1)
+        int numerosorteio2 = 0; // acumulador parcial (Player1) - usado para somar
+        int numerosorteio3 = 0; // valor sorteado mais recente (Player2)
+        int numerosorteio4 = 0; // acumulador parcial (Player2) - usado para somar
 
-        int numerosfinal1 = 0; // total final Zucolin
-        int numerosfinal2 = 0; // total final Nathália
+        int numerosfinal1 = 0; // total final Player1
+        int numerosfinal2 = 0; // total final Player2
 
-        bool perdeu1Flag = false; // Zucolin passou de 21
-        bool perdeu2Flag = false; // Nathália passou de 21
+        bool perdeu1Flag = false; // Player1 passou de 21
+        bool perdeu2Flag = false; // Player2 passou de 21
 
-        bool parouZucolin = false;   // Zucolin apertou "Parar" (button2)
-        bool parouNathalia = false;  // Nathália apertou "Parar" (button3)
+        bool parouPlayer1 = false;   // Player1 apertou "Parar" (button2)
+        bool parouPlayer2 = false;  // Player2 apertou "Parar" (button3)
 
         string usuarioganho = "";
 
@@ -53,11 +53,11 @@ namespace BlackJackGame
         public void ResetGame()
         {
             // tornar controles visíveis novamente
-            button1.Visible = true;  // botão sortear Zucolin
-            button2.Visible = true;  // botão parar Zucolin
+            button1.Visible = true;  // botão sortear Player1
+            button2.Visible = true;  // botão parar Player1
             num1.Visible = true;
-            button3.Visible = true;  // botão parar Nathália
-            button4.Visible = true;  // botão sortear Nathália
+            button3.Visible = true;  // botão parar Player2
+            button4.Visible = true;  // botão sortear Player2
             num2.Visible = true;
             label2.Visible = true;
             label3.Visible = true;
@@ -71,8 +71,8 @@ namespace BlackJackGame
             // reiniciar flags
             perdeu1Flag = false;
             perdeu2Flag = false;
-            parouZucolin = false;
-            parouNathalia = false;
+            parouPlayer1 = false;
+            parouPlayer2 = false;
 
             // zerar acumuladores
             numerosorteio1 = 0;
@@ -92,11 +92,11 @@ namespace BlackJackGame
         }
 
 
-        // ======== JOGADOR 1 - ZUCOLIN (Button 1) ========
+        // ======== JOGADOR 1 - (Button 1) ========
         private void button1_Click(object sender, EventArgs e)
         {
-            // se Zucolin já parou, não pode sortear mais
-            if (parouZucolin) return;
+            // se Player1 já parou, não pode sortear mais
+            if (parouPlayer1) return;
 
             // gerar um novo número e somar ao acumulador do jogador 1
             int sorteio = r.Next(1, 11); // 1..9
@@ -126,7 +126,7 @@ namespace BlackJackGame
                 return;
             }
 
-            // se o outro já perdeu, Zucolin ganha automaticamente
+            // se o outro já perdeu, Player1 ganha automaticamente
             if (perdeu2Flag == true)
             {
                 usuarioganho = "Jogador 1";
@@ -139,10 +139,10 @@ namespace BlackJackGame
         // ======== JOGADOR 1 - PARAR (Button 2) ========
         private void button2_Click(object sender, EventArgs e)
         {
-            parouZucolin = true;
+            parouPlayer1 = true;
 
             // se os dois já pararam, comparar resultados
-            if (parouZucolin && parouNathalia)
+            if (parouPlayer1 && parouPlayer2)
             {
                 CompararResultados();
             }
@@ -150,11 +150,11 @@ namespace BlackJackGame
 
 
 
-        // ======== JOGADOR 2 - NATHÁLIA (Button 4) ========
+        // ======== JOGADOR 2 - (Button 4) ========
         private void button4_Click(object sender, EventArgs e)
         {
-            // se Nathália já parou, não pode sortear mais
-            if (parouNathalia) return;
+            // se Player2 já parou, não pode sortear mais
+            if (parouPlayer2) return;
 
             // gerar um novo número e somar ao acumulador do jogador 2
             int sorteio = r.Next(1, 11); // 1..9
@@ -184,7 +184,7 @@ namespace BlackJackGame
                 return;
             }
 
-            // se o outro já perdeu, Nathália ganha automaticamente
+            // se o outro já perdeu, Player2 ganha automaticamente
             if (perdeu1Flag == true)
             {
                 usuarioganho = "Jogador 2";
@@ -197,10 +197,10 @@ namespace BlackJackGame
         // ======== JOGADOR 2 - PARAR (Button 3) ========
         private void button3_Click(object sender, EventArgs e)
         {
-            parouNathalia = true;
+            parouPlayer2 = true;
 
             // se os dois já pararam, comparar resultados
-            if (parouZucolin && parouNathalia)
+            if (parouPlayer1 && parouPlayer2)
             {
                 CompararResultados();
             }
