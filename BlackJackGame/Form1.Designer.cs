@@ -147,7 +147,7 @@
             // 
             this.ganhou.AutoSize = true;
             this.ganhou.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ganhou.Location = new System.Drawing.Point(262, 259);
+            this.ganhou.Location = new System.Drawing.Point(262, 248);
             this.ganhou.Name = "ganhou";
             this.ganhou.Size = new System.Drawing.Size(654, 95);
             this.ganhou.TabIndex = 11;
